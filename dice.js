@@ -5,12 +5,14 @@ const {
   Button,
   TextView,
   ui,
+  Video,
   ImageView,
   AlertDialog,
   app, TextInput
 } = require('tabris');
 
 const IMAGE_PATH = 'https://talarie.github.io/imd-learning-tabris/images/';
+const VIDEO_PATH = 'https://talarie.github.io/imd-learning-tabris';
 const MY_GITHUB_REPO = 'https://github.com/talarie/imd-learning-tabris'
 
 // global variables
@@ -36,6 +38,21 @@ let casinoimage = new ImageView({
   image: IMAGE_PATH + 'casinoLogo.png'
 }).appendTo(ui.contentView);
 
+let button2 = new Button({
+  id: 'button2',
+  centerX: 0, bottom: 16,
+  text: '❚❚'
+}).on('select', () => video.state === 'play' ? video.pause() : video.play())
+  .appendTo(ui.contentView);
+
+let video = new Video({
+  left: 0, top: 0, right: 0, bottom: '#button 16',
+  url: 'https://fpdl.vimeocdn.com/vimeo-prod-skyfire-std-us/01/2157/5/135788180/401998382.mp4?token=1519773409-0x9485fdc905c4a0857f59ad8e42cac6f7a82b70c4',
+  controlsVisible: false
+}).on('stateChanged', event => button.text = event.value !== 'pause' ? '❚❚' : '▶')
+  .appendTo(ui.contentView);
+
+
 let button = new Button({
     centerX: 0,
     top: 'prev() 10',
@@ -52,7 +69,8 @@ let button = new Button({
     if (rand == rand2) {
       label.text = userText.text + '- WINNER, you got a 4';
       numWins = numWins + 1 ;
-      winnerimage.image = IMAGE_PATH + 'winner.png';
+      video.state = VIDEO_PATH + 'winnerVideo.mp4';
+      button2.text = '';
     } else {
       label.text = userText.text  + ' - Try again- Wins so far ' + numWins;
       winnerimage.image = '';
