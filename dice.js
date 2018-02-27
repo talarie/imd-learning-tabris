@@ -1,4 +1,5 @@
-// This is a simple Tabris.js app. by MR. M. -  Feel free to modify as you please.
+
+  // This is a simple Tabris.js app. by MR. M. -  Feel free to modify as you please.
 
 const {
   Button,
@@ -9,8 +10,8 @@ const {
   app, TextInput
 } = require('tabris');
 
-const IMAGE_PATH = 'https://mrmccormack.github.io/imd-learning-tabris/images/';
-const MY_GITHUB_REPO = 'https://github.com/mrmccormack/imd-learning-tabris'
+const IMAGE_PATH = 'https://talarie.github.io/imd-learning-tabris/images/';
+const MY_GITHUB_REPO = 'https://github.com/talarie/imd-learning-tabris'
 
 // global variables
 let numWins = 0;
@@ -28,9 +29,11 @@ let userText = new TextInput({
 }).appendTo(ui.contentView);
 
 let casinoimage = new ImageView({
-  top: 'prev() 10',
+  top: 'prev() 5',
+  width: 350,
+  height: 300,
   centerX: 0,
-  image: IMAGE_PATH + 'casino.jpg'
+  image: IMAGE_PATH + 'casinoLogo.png'
 }).appendTo(ui.contentView);
 
 let button = new Button({
@@ -44,17 +47,17 @@ let button = new Button({
 
     image1.image = IMAGE_PATH + rand + '.png';
 
-    if (rand == 6) {
-      label.text = userText.text + '- WINNER, you got a 6';
+    if (rand == 4) {
+      label.text = userText.text + '- WINNER, you got a 4';
       numWins = numWins + 1 ;
-      winnerimage.image = IMAGE_PATH + 'winner.jpg';
+      winnerimage.image = IMAGE_PATH + 'winner.png';
     } else {
       label.text = userText.text  + ' - Try again- Wins so far ' + numWins;
       winnerimage.image = '';
     }
 
-    if (numWins == 5){
-      label.text = 'You WON with 5 wins!';
+    if (numWins == 3){
+      label.text = 'You WON with 3 wins!';
       image1.image = IMAGE_PATH + 'whitedice.png';
       winnerimage.image = '';
       numWins = 0;
