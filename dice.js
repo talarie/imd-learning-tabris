@@ -44,10 +44,12 @@ let button = new Button({
   .on('select', () => {
     casinoimage.height = 1;
     var rand = 1 + Math.floor(Math.random() * 6);
+    var rand2 = 1 + Math.floor(Math.random() * 6);
 
     image1.image = IMAGE_PATH + rand + '.png';
+    image2.image = IMAGE_PATH + rand2 + '.png';
 
-    if (rand == 4) {
+    if (rand == rand2) {
       label.text = userText.text + '- WINNER, you got a 4';
       numWins = numWins + 1 ;
       winnerimage.image = IMAGE_PATH + 'winner.png';
@@ -56,8 +58,8 @@ let button = new Button({
       winnerimage.image = '';
     }
 
-    if (numWins == 3){
-      label.text = 'You WON with 3 wins!';
+    if (numWins == 5){
+      label.text = 'You WON with 5 wins!';
       image1.image = IMAGE_PATH + 'whitedice.png';
       winnerimage.image = '';
       numWins = 0;
@@ -76,6 +78,16 @@ let label = new TextView({
 // Display images with different scale modes
 
 let image1 = new ImageView({
+  top: 'prev() 10',
+  width: 100,
+  height: 100,
+  centerX: 0,
+  scaleMode: 'fill',
+  image: IMAGE_PATH + 'whitedice.png'
+
+}).appendTo(ui.contentView);
+
+let image2 = new ImageView({
   top: 'prev() 10',
   width: 100,
   height: 100,
